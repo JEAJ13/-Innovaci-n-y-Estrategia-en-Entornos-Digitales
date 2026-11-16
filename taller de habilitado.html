@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechPulse | Centro de Habilitado y Acondicionamiento Tecnológico B2B</title>
+  <style>
+    :root {
+      --primary: #0f172a;
+      --secondary: #1e293b;
+      --accent: #0284c7;
+      --accent-dark: #0369a1;
+      --success: #16a34a;
+      --warning: #d97706;
+      --bg-light: #f8fafc;
+      --border: #e2e8f0;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { color: var(--text-main); line-height: 1.6; background: #fff; }
+
+    /* HEADER & NAVEGACIÓN */
+    header { background: var(--primary); color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .logo { font-size: 1.45rem; font-weight: 800; letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.5rem; }
+    .logo span { color: #38bdf8; }
+    nav { display: flex; align-items: center; gap: 1.5rem; }
+    nav a { color: #cbd5e1; text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: 0.2s; }
+    nav a:hover { color: #fff; }
+    .btn-qr { background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 0.45rem 0.9rem; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+    .btn-qr:hover { background: rgba(56, 189, 248, 0.15); }
+    .btn-nav { background: var(--accent); color: #fff !important; padding: 0.5rem 1.1rem; border-radius: 6px; font-weight: 600; }
+
+    /* ETAPA 1: TOFU - HERO SECTION */
+    .hero { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color: #fff; padding: 5rem 5% 4rem; text-align: center; }
+    .pill { background: rgba(56, 189, 248, 0.18); color: #7dd3fc; padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; display: inline-block; margin-bottom: 1.2rem; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .hero h1 { font-size: 2.7rem; max-width: 880px; margin: 0 auto 1.2rem; line-height: 1.18; font-weight: 800; }
+    .hero p { font-size: 1.15rem; color: #cbd5e1; max-width: 720px; margin: 0 auto 2.2rem; }
+    .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--accent); color: #fff; padding: 0.95rem 1.9rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: 0.2s; display: inline-block; }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+    .btn-outline { background: rgba(255,255,255,0.08); border: 1.5px solid #94a3b8; color: #fff; padding: 0.95rem 1.9rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.2s; }
+    .btn-outline:hover { background: rgba(255,255,255,0.16); }
+
+    /* BARRA DE MÉTRICAS SLA */
+    .sla-bar { background: var(--secondary); color: #fff; padding: 1.5rem 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center; border-top: 1px solid #334155; }
+    .sla-item strong { display: block; font-size: 1.6rem; color: #38bdf8; }
+    .sla-item span { font-size: 0.85rem; color: #cbd5e1; }
+
+    /* SECCIONES GENERALES */
+    section { padding: 4.5rem 5%; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header h2 { font-size: 2.1rem; color: var(--primary); margin-bottom: 0.6rem; }
+    .section-header p { color: var(--text-muted); max-width: 680px; margin: 0 auto; font-size: 1.05rem; }
+
+    /* ETAPA 2: MOFU - PESTAÑAS POR SEGMENTO B2B */
+    .tabs-nav { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .tab-btn { padding: 0.75rem 1.5rem; border: 1.5px solid var(--border); background: var(--bg-light); border-radius: 8px; font-weight: 700; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
+    .tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .tab-content { max-width: 1000px; margin: 0 auto; background: var(--bg-light); border: 1px solid var(--border); border-radius: 14px; padding: 2.5rem; display: none; }
+    .tab-content.active { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: center; }
+    .tab-content h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 0.8rem; }
+    .tab-content ul { list-style: none; margin: 1.2rem 0; }
+    .tab-content li { padding: 0.45rem 0; font-size: 0.98rem; }
+    .tab-content li::before { content: "✓ "; color: var(--success); font-weight: 800; }
+    .value-box { background: #fff; border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+    /* PROCESO EN 4 PASOS */
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; max-width: 1150px; margin: 0 auto; }
+    .step-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem; position: relative; }
+    .step-num { background: var(--accent); color: #fff; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; margin-bottom: 1rem; }
+
+    /* ETAPA 3: DESEO - COTIZADOR Y SIMULADOR ROI */
+    .calc-wrapper { background: var(--bg-light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .calc-container { max-width: 1000px; margin: 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 12px 35px rgba(0,0,0,0.08); display: grid; grid-template-columns: 1.2fr 1fr; overflow: hidden; }
+    .calc-controls { padding: 2.5rem; }
+    .control-group { margin-bottom: 1.6rem; }
+    .control-group label { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 0.6rem; font-size: 0.95rem; }
+    .highlight-val { color: var(--accent); font-size: 1.2rem; }
+    input[type="range"] { width: 100%; accent-color: var(--accent); cursor: pointer; }
+    select { width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 0.95rem; background: #fff; }
+    .discount-tag { display: inline-block; background: #dcfce7; color: #166534; font-size: 0.8rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 4px; margin-top: 0.4rem; }
+
+    .calc-summary { background: var(--primary); color: #fff; padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; }
+    .summary-row { border-bottom: 1px solid #334155; padding-bottom: 1rem; margin-bottom: 1rem; }
+    .summary-row span { font-size: 0.85rem; color: #94a3b8; display: block; }
+    .summary-row strong { font-size: 1.75rem; color: #38bdf8; }
+    .roi-alert { background: rgba(22, 163, 74, 0.2); border: 1px solid #22c55e; color: #86efac; padding: 1rem; border-radius: 8px; font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+    /* ETAPA 4: BOFU - OFERTA PILOTO GRATUITA */
+    .bofu-box { max-width: 820px; margin: 0 auto; background: #fff; border: 2px solid var(--accent); border-radius: 16px; padding: 3rem; box-shadow: 0 15px 35px rgba(2, 132, 199, 0.1); }
+    .bofu-header { text-align: center; margin-bottom: 2rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-grid input, .form-grid select { padding: 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; width: 100%; }
+    .full { grid-column: 1 / -1; }
+    .alert-success { display: none; background: #dcfce7; border: 1px solid #86efac; color: #166534; padding: 1.2rem; border-radius: 8px; margin-top: 1.2rem; font-weight: 600; text-align: center; }
+
+    /* MODAL TRAZABILIDAD QR (RETENCIÓN) */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.75); z-index: 2000; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-card { background: #fff; max-width: 520px; width: 100%; border-radius: 12px; padding: 2rem; position: relative; }
+    .close-modal { position: absolute; top: 1rem; right: 1.2rem; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); border: none; background: none; }
+    .qr-result { background: var(--bg-light); border: 1px solid var(--border); padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.9rem; }
+
+    footer { background: var(--primary); color: #94a3b8; text-align: center; padding: 2.5rem 5%; font-size: 0.9rem; }
+    @media (max-width: 768px) {
+      .tab-content.active, .calc-container, .form-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+      nav a:not(.btn-nav) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <header>
+    <div class="logo">TECH<span>PULSE</span></div>
+    <nav>
+      <a href="#segmentos">Soluciones</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#cotizador">Cotizador B2B</a>
+      <button class="btn-qr" onclick="abrirModalQR()">🔍 Rastrear Equipo QR</button>
+      <a href="#piloto" class="btn-nav">Prueba Piloto Gratis</a>
+    </nav>
+  </header>
+
+  <!-- ETAPA 1: ATENCIÓN (TOFU) -->
+  <section class="hero">
+    <div class="pill">Centro de Habilitado y Acondicionamiento Tecnológico Integral</div>
+    <h1>Renueva toda tu flota de cómputo al 300% por el 20% del costo de equipos nuevos</h1>
+    <p>Recolección programada, limpieza profunda, actualización a SSD/RAM, clonación masiva de imagen corporativa y trazabilidad individual mediante código QR.</p>
+    <div class="cta-group">
+      <a href="#cotizador" class="btn-primary">Simular Ahorro de mi Lote</a>
+      <a href="#piloto" class="btn-outline">Solicitar 1 Equipo Muestra Gratis</a>
+    </div>
+  </section>
+
+  <!-- MÉTRICAS SLA -->
+  <div class="sla-bar">
+    <div class="sla-item"><strong>&lt; 72 Horas</strong><span>Tiempo SLA para lotes de hasta 15 equipos</span></div>
+    <div class="sla-item"><strong>80% Ahorro</strong><span>Frente a compra de hardware nuevo</span></div>
+    <div class="sla-item"><strong>100% Trazable</strong><span>Historial técnico y garantía en código QR</span></div>
+    <div class="sla-item"><strong>6 Meses</strong><span>Garantía escrita en mano de obra y software</span></div>
+  </div>
+
+  <!-- ETAPA 2: INTERÉS (MOFU - PESTAÑAS POR SEGMENTO) -->
+  <section id="segmentos">
+    <div class="section-header">
+      <h2>Soluciones Especializadas por Tipo de Operación</h2>
+      <p>Selecciona tu perfil institucional para conocer cómo optimizamos tu infraestructura actual.</p>
+    </div>
+
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="cambiarTab(event, 'pymes')">1. PyMEs y Despachos</button>
+      <button class="tab-btn" onclick="cambiarTab(event, 'corporativos')">2. Corporativos con Rotación</button>
+      <button class="tab-btn" onclick="cambiarTab(event, 'escuelas')">3. Instituciones Educativas</button>
+    </div>
+
+    <div id="pymes" class="tab-content active">
+      <div>
+        <h3>Aceleración y Entrega "Plug & Play" para PyMEs</h3>
+        <p>Ideal para empresas de 10 a 50 empleados con equipos de 3 a 5 años de antigüedad que sufren lentitud operativa y carecen de departamento de TI interno.</p>
+        <ul>
+          <li>Migración a unidades de estado sólido (SSD) y ampliación de RAM.</li>
+          <li>Limpieza interna profunda y cambio de pasta térmica de alto rendimiento.</li>
+          <li>Configuración lista para encender y trabajar desde el minuto uno.</li>
+        </ul>
+      </div>
+      <div class="value-box">
+        <strong>Impacto Financiero Directo:</strong>
+        <p style="margin-top:0.5rem; font-size:0.92rem; color:var(--text-muted);">Evita descapitalizarte comprando computadoras de $14,000+ MXN. Obtén el mismo rendimiento de oficina por menos de $1,500 MXN por equipo.</p>
+      </div>
+    </div>
+
+    <div id="corporativos" class="tab-content">
+      <div>
+        <h3>Gestión de Ciclo de Vida y Altas/Bajas de Personal</h3>
+        <p>Diseñado para empresas de servicios, <em>call centers</em> y logística con rotación constante de colaboradores.</p>
+        <ul>
+          <li>Borrado seguro certificado de información confidencial del empleado saliente.</li>
+          <li>Restauración de imagen maestra corporativa y auditoría estética.</li>
+          <li>Control de inventario en la nube mediante etiqueta QR única por activo.</li>
+        </ul>
+      </div>
+      <div class="value-box">
+        <strong>Suscripción "Flota Siempre Lista":</strong>
+        <p style="margin-top:0.5rem; font-size:0.92rem; color:var(--text-muted);">Por una cuota mensual fija por equipo, cubrimos habilitados express ilimitados cada vez que tengas rotación de personal.</p>
+      </div>
+    </div>
+
+    <div id="escuelas" class="tab-content">
+      <div>
+        <h3>Habilitado Masivo para Laboratorios y Aulas</h3>
+        <p>Preparación estacional de decenas o cientos de equipos antes del inicio de ciclos escolares.</p>
+        <ul>
+          <li>Clonación simultánea masiva de software académico y licencias.</li>
+          <li>Blindaje de sistema operativo para evitar desconfiguraciones por alumnos.</li>
+          <li>Reparación física de puertos, teclados y cargadores por volumen.</li>
+        </ul>
+      </div>
+      <div class="value-box">
+        <strong>Puntualidad Garantizada por Contrato:</strong>
+        <p style="margin-top:0.5rem; font-size:0.92rem; color:var(--text-muted);">Recolección con embalaje antiestático al cierre de semestre y entrega 100% operativa antes del primer día de clases.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO OPERATIVO -->
+  <section id="proceso" style="background: var(--bg-light); border-top: 1px solid var(--border);">
+    <div class="section-header">
+      <h2>Logística Inversa sin Fricción</h2>
+      <p>Nos encargamos de todo el ciclo físico y digital mientras recibes notificaciones automáticas por WhatsApp.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>Recolección Segura</h4>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.5rem;">Recogemos lotes de 5 o más equipos en tus instalaciones usando transporte acolchado y antiestático.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>Auditoría y Etiquetado QR</h4>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.5rem;">Cada computadora recibe un código QR único para monitorear su diagnóstico y estatus en tiempo real.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>Habilitado en Lote</h4>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.5rem;">Limpieza profunda, instalación de SSD/RAM y clonación simultánea en mesas de trabajo especializadas.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h4>Pruebas QA y Entrega</h4>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.5rem;">Validación de estrés térmico, entrega en sitio y activación de garantía digital de 6 meses.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ETAPA 3: DESEO (SIMULADOR DE INVERSIÓN Y ROI) -->
+  <section id="cotizador" class="calc-wrapper">
+    <div class="section-header">
+      <h2>Cotizador Instantáneo por Volumen</h2>
+      <p>Calcula tu inversión exacta con descuentos automáticos por lote y compara el ahorro frente a comprar equipo nuevo.</p>
+    </div>
+    <div class="calc-container">
+      <div class="calc-controls">
+        <div class="control-group">
+          <label>Tamaño del Lote: <span id="lblQty" class="highlight-val">15 equipos</span></label>
+          <input type="range" id="rngQty" min="5" max="100" value="15" oninput="actualizarCotizador()">
+          <div id="lblDiscount" class="discount-tag">✓ 5% de descuento por volumen aplicado (15 a 49 equipos)</div>
+        </div>
+
+        <div class="control-group">
+          <label>Nivel de Habilitado:</label>
+          <select id="selNivel" onchange="actualizarCotizador()">
+            <option value="850">Nivel 1: Habilitado Lógico ($850 base) — Borrado seguro, clonación y limpieza</option>
+            <option value="1450" selected>Nivel 2: Habilitado Integral + Upgrade SSD 480GB ($1,450 base)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>Esquema de Continuidad:</label>
+          <select id="selModalidad" onchange="actualizarCotizador()">
+            <option value="lote">Pago Único por Lote (Incluye garantía de 6 meses)</option>
+            <option value="suscripcion">Lote + Póliza "Flota Siempre Lista" (+$150 MXN/equipo/mes)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="calc-summary">
+        <div>
+          <div class="summary-row">
+            <span>Tarifa Unitaria con Descuento:</span>
+            <strong id="outUnit">$1,378 MXN</strong>
+          </div>
+          <div class="summary-row">
+            <span>Inversión Total Estimada:</span>
+            <strong id="outTotal">$20,663 MXN</strong>
+          </div>
+          <div class="roi-alert" id="outRoi">
+            💰 <strong>Ahorro proyectado de $189,337 MXN</strong> comparado contra la compra de 15 equipos nuevos ($14,000 MXN c/u).
+          </div>
+        </div>
+        <a href="#piloto" class="btn-primary" style="text-align:center;">Apartar Tarifa y Solicitar Muestra Gratis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ETAPA 4: ACCIÓN (BOFU - PILOTO GRATUITO) -->
+  <section id="piloto">
+    <div class="bofu-box">
+      <div class="bofu-header">
+        <div class="pill" style="background:#dcfce7; color:#166534; border-color:#86efac;">Oferta Cero Riesgo para Empresas y Escuelas</div>
+        <h2>Solicita el Habilitado de 1 Equipo Muestra Gratis</h2>
+        <p style="color:var(--text-muted); margin-top:0.5rem;">Comprueba físicamente la velocidad, limpieza y reporte técnico QR en uno de tus equipos antes de aprobar tu lote completo.</p>
+      </div>
+
+      <form class="form-grid" onsubmit="procesarFormulario(event)">
+        <input type="text" placeholder="Nombre completo y puesto" required>
+        <input type="text" placeholder="Nombre de la Empresa o Escuela" required>
+        <input type="email" placeholder="Correo electrónico corporativo" required>
+        <input type="tel" placeholder="Teléfono / WhatsApp directo" required>
+        <select class="full">
+          <option value="5-15">Flota estimada: 5 a 15 equipos</option>
+          <option value="16-50" selected>Flota estimada: 16 a 50 equipos</option>
+          <option value="50+">Flota estimada: Más de 50 equipos</option>
+        </select>
+        <button type="submit" class="btn-primary full">Activar Mi Diagnóstico Piloto Gratuito</button>
+      </form>
+      <div id="msgOk" class="alert-success">
+        ✓ ¡Solicitud registrada con éxito! En menos de 2 horas recibirás un mensaje vía WhatsApp para coordinar la recolección sin costo de tu equipo muestra.
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DE RETENCIÓN: CONSULTA QR -->
+  <div id="modalQR" class="modal">
+    <div class="modal-card">
+      <button class="close-modal" onclick="cerrarModalQR()">&times;</button>
+      <h3>Portal de Trazabilidad QR</h3>
+      <p style="font-size:0.9rem; color:var(--text-muted); margin:0.5rem 0 1rem;">Ingresa el código de etiqueta de tu equipo (Prueba con: <strong>QR-104-01</strong>)</p>
+      <div style="display:flex; gap:0.5rem;">
+        <input type="text" id="inputQR" value="QR-104-01" style="flex:1; padding:0.7rem; border:1px solid #cbd5e1; border-radius:6px;">
+        <button class="btn-primary" style="padding:0.7rem 1.2rem;" onclick="buscarQR()">Consultar</button>
+      </div>
+      <div id="qrOutput" class="qr-result">
+        <strong>Activo:</strong> Lenovo ThinkPad T14 (Lote #104)<br>
+        <strong>Servicios:</strong> Limpieza profunda + SSD 480GB + Imagen Corporativa<br>
+        <strong>Estatus:</strong> <span style="color:var(--success); font-weight:700;">● Operativo / Garantía Vigente</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>TECHPULSE</strong> — Taller de Habilitado y Acondicionamiento Tecnológico Integral | Economía Circular & Trazabilidad B2B</p>
+  </footer>
+
+  <script>
+    // 1. Navegación por pestañas (Segmentos B2B)
+    function cambiarTab(evt, tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+
+    // 2. Lógica del Cotizador y Reglas de Descuento por Volumen
+    function actualizarCotizador() {
+      const qty = parseInt(document.getElementById('rngQty').value);
+      const base = parseInt(document.getElementById('selNivel').value);
+      const mod = document.getElementById('selModalidad').value;
+
+      document.getElementById('lblQty').innerText = qty + ' equipos';
+
+      let desc = 0;
+      let tagText = 'Tarifa estándar por lote (5 a 14 equipos)';
+      if (qty >= 50) {
+        desc = 0.15;
+        tagText = '✓ 15% de descuento corporativo aplicado (+50 equipos)';
+      } else if (qty >= 15) {
+        desc = 0.05;
+        tagText = '✓ 5% de descuento por volumen aplicado (15 a 49 equipos)';
+      }
+      document.getElementById('lblDiscount').innerText = tagText;
+
+      const unitFinal = Math.round(base * (1 - desc));
+      const totalLote = unitFinal * qty;
+      const ahorro = (14000 * qty) - totalLote;
+
+      document.getElementById('outUnit').innerText = '$' + unitFinal.toLocaleString('es-MX') + ' MXN';
+      if (mod === 'suscripcion') {
+        const mensual = qty * 150;
+        document.getElementById('outTotal').innerText = '$' + totalLote.toLocaleString('es-MX') + ' + $' + mensual.toLocaleString('es-MX') + '/mes';
+      } else {
+        document.getElementById('outTotal').innerText = '$' + totalLote.toLocaleString('es-MX') + ' MXN';
+      }
+
+      document.getElementById('outRoi').innerHTML = 
+        `💰 <strong>Ahorro proyectado de $${ahorro.toLocaleString('es-MX')} MXN</strong> comparado contra la compra de ${qty} equipos nuevos ($14,000 MXN c/u).`;
+    }
+
+    // 3. Envío de formulario BOFU
+    function procesarFormulario(e) {
+      e.preventDefault();
+      document.getElementById('msgOk').style.display = 'block';
+    }
+
+    // 4. Modal de Trazabilidad QR
+    function abrirModalQR() { document.getElementById('modalQR').style.display = 'flex'; }
+    function cerrarModalQR() { document.getElementById('modalQR').style.display = 'none'; }
+    function buscarQR() {
+      const code = document.getElementById('inputQR').value.trim().toUpperCase();
+      const out = document.getElementById('qrOutput');
+      if (code === 'QR-104-01' || code === '') {
+        out.innerHTML = `<strong>Activo:</strong> Lenovo ThinkPad T14 (Lote #104)<br><strong>Servicios:</strong> Limpieza profunda + SSD 480GB + Imagen Corporativa<br><strong>Estatus:</strong> <span style="color:var(--success); font-weight:700;">● Operativo / Garantía Vigente</span>`;
+      } else {
+        out.innerHTML = `<strong>Activo (${code}):</strong> Dell Latitude 5420<br><strong>Servicios:</strong> Borrado seguro + Clonación maestra<br><strong>Estatus:</strong> <span style="color:var(--warning); font-weight:700;">● En pruebas de estrés QA (Entrega hoy 17:00 hrs)</span>`;
+      }
+    }
+  </script>
+</body>
+</html>
